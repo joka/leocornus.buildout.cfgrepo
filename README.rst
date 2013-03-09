@@ -14,6 +14,7 @@ I will try to include the following utilities:
  * SQLite3 compile and build
  * Nginx compile and build
  * Nginx database server setup utilities.
+ * Magento webshop installation
 
 How to use
 ==========
@@ -65,8 +66,8 @@ Change Log
 0.2 (2012-05-08)
 ----------------
 
- - Add config profile to build legacy MySQL database server 
-   up to version 5.1.x 
+ - Add config profile to build legacy MySQL database server
+   up to version 5.1.x
 
 0.1 (2012-04-27)
 ----------------
