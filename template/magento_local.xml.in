@@ -63,7 +63,7 @@
         <routers>
             <adminhtml>
                 <args>
-                    <frontName><![CDATA[admin]]></frontName>
+                  <frontName><![CDATA[${parts['magento-conf'.admin_name]}]]></frontName>
                 </args>
             </adminhtml>
         </routers>
