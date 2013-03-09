@@ -26,6 +26,7 @@
 # The following options will be passed to all MySQL clients
 [client]
 password   = ${:user_password}
+user   = ${:user}
 port                = ${:port}
 socket              = ${:socket}
 
