@@ -71,6 +71,11 @@
         </routers>
     </admin>
 
+    <!--Website specific config -->
+    <websites>
+        ${parts['magento-conf'].websites_conf}
+    </websites>
+
     <!--Store specific config -->
     <stores>
         ${parts['magento-conf'].stores_conf}
