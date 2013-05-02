@@ -32,6 +32,44 @@
         <install>
             <date><![CDATA[Thu, 07 Mar 2013 19:59:36 +0000]]></date>
         </install>
+        <!--<cache>-->
+            <!--<backend>apc</backend>-->
+            <!--<slow_backend>database</slow_backend>-->
+            <!--<prefix>MYSTORE_</prefix>-->
+        <!--</cache>-->
+        <backend>Cm_Cache_Backend_Redis</backend>
+        <backend_options>
+            <!--<server>${parts['hosts'].redis}</server> [> or absolute path to unix socket <]-->
+            <server>${parts['settings']["run-directory"]}/redis.sock</server> <!-- or absolute path to unix socket -->
+            <port>${parts['ports'].redis}</port>
+            <persistent>mymagento1</persistent>
+            <database>0</database>
+            <password></password>
+            <force_standalone>0</force_standalone>
+            <connect_retries>1</connect_retries>
+            <automatic_cleaning_factor>0</automatic_cleaning_factor>
+            <compress_data>1</compress_data>
+            <compress_tags>1</compress_tags>
+            <compress_threshold>20480</compress_threshold>
+            <compression_lib>gzip</compression_lib> <!-- Supports gzip, lzf and snappy -->
+            <read_timeout>10</read_timeout>         <!-- Set read timeout duration -->
+        </backend_options>
+        <redis_session>
+            <!--<server>${parts['hosts'].redis}</server> [> or absolute path to unix socket <]-->
+            <server>${parts['settings']["run-directory"]}/redis.sock</server> <!-- or absolute path to unix socket -->
+            <port>${parts['ports'].redis}</port>
+            <password></password>             <!-- Specify if your redis server requires authentication -->
+            <timeout>2.5</timeout>            <!-- This is the Redis connection timeout, not the locking timeout -->
+            <persistent>mymagento2</persistent>         <!-- Specify unique string to enable persistent connections. E.g.: sess-db0 -->
+            <db>1</db>
+            <compression_threshold>2048</compression_threshold>  <!-- Set to 0 to disable compression -->
+            <compression_lib>gzip</compression_lib>              <!-- gzip, lzf or snappy -->
+            <log_broken_locks>0</log_broken_locks>               <!-- Useful for debugging fatal errors or extremely slow pages -->
+            <max_concurrency>6</max_concurrency>
+            <break_after_frontend>5</break_after_frontend>       <!-- Frontend arguably doesn't need locking as urgently -->
+            <break_after_adminhtml>30</break_after_adminhtml>
+            <bot_lifetime>7200</bot_lifetime>                    <!-- Bots get shorter session lifetimes. 0 to disable -->
+        </redis_session>
         <crypt>
         {% python
             import random;
@@ -59,7 +97,7 @@
                 </connection>
             </default_setup>
         </resources>
-        <session_save><![CDATA[files]]></session_save>
+        <session_save><![CDATA[db]]></session_save>
     </global>
     <admin>
         <routers>
