@@ -74,7 +74,7 @@
         {% python
             import random;
             def randomhash(length):
-                return hex(random.SystemRandom().getrandbits(length))
+                return hex(random.SystemRandom().getrandbits(length))[:55]
         %}
             <key><![CDATA[${randomhash(256)}]]></key>
         </crypt>
